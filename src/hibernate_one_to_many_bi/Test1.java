@@ -17,31 +17,39 @@ public class Test1 {
         Session session = null;
 
         try {
-            session = factory.getCurrentSession();
-            Department dep = new Department("HR", 800, 1500);
-            Employee emp1 = new Employee("Vova", "Putin", 800);
-            Employee emp2 = new Employee("Dima", "Medvedev", 1500);
-            Employee emp3 = new Employee("Vasya", "Zhaba", 1200);
-            dep.addEmployeeToDepartment(emp1);
-            dep.addEmployeeToDepartment(emp2);
-            dep.addEmployeeToDepartment(emp3);
-
-            session.beginTransaction();
-            session.save(dep);
-
-            session.getTransaction().commit();
-            System.out.println("Done!");
-//**********************************************************************
 //            session = factory.getCurrentSession();
+//            Department dep = new Department("HR", 800, 1500);
+//            Employee emp1 = new Employee("Vova", "Putin", 800);
+//            Employee emp2 = new Employee("Dima", "Medvedev", 1500);
+//            Employee emp3 = new Employee("Vasya", "Zhaba", 1200);
+//            dep.addEmployeeToDepartment(emp1);
+//            dep.addEmployeeToDepartment(emp2);
+//            dep.addEmployeeToDepartment(emp3);
 //
 //            session.beginTransaction();
-//
-//            Department department = session.get(Department.class,1);
-//            System.out.println(department);
-//            System.out.println(department.getEmps());
+//            session.save(dep);
 //
 //            session.getTransaction().commit();
 //            System.out.println("Done!");
+//**********************************************************************
+            session = factory.getCurrentSession();
+
+            session.beginTransaction();
+
+            System.out.println("Get department");
+
+            Department department = session.get(Department.class,20);
+            System.out.println("Show department");
+            System.out.println(department);
+
+            System.out.println("Loading employees");
+            department.getEmps().get(0);
+
+            session.getTransaction().commit();
+
+            System.out.println("Show employees from department");
+            System.out.println(department.getEmps());
+            System.out.println("Done!");
 //**********************************************************************
 //            session = factory.getCurrentSession();
 //
